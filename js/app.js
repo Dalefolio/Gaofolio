@@ -1,1 +1,48 @@
-eval(function(p,a,c,k,e,d){e=function(c){return(c<a?'':e(parseInt(c/a)))+((c=c%a)>35?String.fromCharCode(c+29):c.toString(36))};if(!''.replace(/^/,String)){while(c--){d[e(c)]=k[c]||e(c)}k=[function(e){return d[e]}];e=function(){return'\\w+'};c=1};while(c--){if(k[c]){p=p.replace(new RegExp('\\b'+e(c)+'\\b','g'),k[c])}}return p}('3 m=9.o(\'.g-m\');3 l=9.o(\'.g-l\');3 7=9.o(\'.A-K\');3 h=9.z(\'.A\');3 j=9.z(\'#j\');3 4=2;3 n=1;J(3 i=0;i<h.I;i++){h[i].5.f=n;n--;h[i].H(\'G\',k(e){3 8=e.F;3 6=E;6.5.f=4;4++;d(8.c(\'y\')==\'g-m\'){6.5.f=4;4+=x;w(k(){6.5.v=\'u(-D)\'},t)}d(8.c("y")==\'g-l\'){6.5.f=4;4+=x;w(k(){6.5.v=\'u(C)\'},t)}d(8.c(\'s\')==\'j\'){7.b.r("a-p");7.b.q("a")}d(8.c(\'s\')==\'B\'){7.b.r("a");7.b.q("a-p")}})}',47,47,'|||var|contZindex|style|pageThis|flip|tgt|document|trnsf|classList|getAttribute|if||zIndex|face|page||pageCover|function|back|front|customZindex|querySelector|reset|add|remove|id|500|rotateY|transform|setTimeout|20|class|querySelectorAll|book|trsf|0deg|180deg|this|target|click|addEventListener|length|for|content'.split('|'),0,{}))
+var front = document.querySelector('.face-front');
+var back = document.querySelector('.face-back');
+var flip = document.querySelector('.book-content');
+var page = document.querySelectorAll('.book');
+var pageCover = document.querySelectorAll('#pageCover');
+
+var contZindex = 2;
+var customZindex = 1;
+
+for (var i = 0; i < page.length; i++) {
+    page[i].style.zIndex = customZindex;
+    customZindex--;
+
+    page[i].addEventListener('click', function (e) {
+
+        var tgt = e.target;
+        var pageThis = this;
+
+        pageThis.style.zIndex = contZindex;
+        contZindex++;
+
+        if (tgt.getAttribute('class') == 'face-front') {
+            pageThis.style.zIndex = contZindex;
+            contZindex += 20;
+            setTimeout(function () {
+                pageThis.style.transform = 'rotateY(-180deg)';
+            }, 500);
+        }
+        if (tgt.getAttribute("class") == 'face-back') {
+            pageThis.style.zIndex = contZindex;
+            contZindex += 20;
+
+            setTimeout(function () {
+                pageThis.style.transform = 'rotateY(0deg)';
+            }, 500);
+        }
+
+        if (tgt.getAttribute('id') == 'pageCover') {
+            flip.classList.remove("trnsf-reset");
+            flip.classList.add("trnsf");
+        }
+        if (tgt.getAttribute('id') == 'trsf') {
+            flip.classList.remove("trnsf");
+            flip.classList.add("trnsf-reset");
+        }
+
+    });
+}
